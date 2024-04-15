@@ -1,4 +1,6 @@
 import os
+import numpy as np
+import csv
 
 
 def read_data(file_name):
@@ -10,9 +12,25 @@ def read_data(file_name):
     """
     cwd_path = os.getcwd()
     file_path = os.path.join(cwd_path, file_name)
+    # print(file_path)
+    data = np.genfromtxt(file_path, delimiter=',')
+    with open(file_path, newline='') as csvfile:
+        csv_reader = csv.reader(csvfile)
+        keys = next(csv_reader)
+
+    slovnik = {}
+    # slovnik[tuple(data[0, :])] = data[1:, :]
+    for i in range(data.shape[1]):
+        slovnik[keys[i]] = list(data[1:, i])
+
+    return slovnik
+
+
 
 
 def main():
+    data = read_data("numbers.csv")
+    print(data)
     pass
 
 
