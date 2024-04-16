@@ -70,10 +70,10 @@ def insertion_sort(lst: list, direction = 1):
         if (lst[i+1] < lst[i]):
             pom = lst[i+1]
             lst[i+1], lst[i] = lst[i], lst[i+1]
-            for j in range(i-1):
-                if (lst[i-j] > pom):
-                    lst[i-j+1] = lst[i - j]
-                    lst[i - j] = pom
+            for j in range(i):
+                if (lst[i-j-1] > pom):
+                    lst[i-j] = lst[i-j-1]
+                    lst[i-j-1] = pom
                 else:
                     break
 
